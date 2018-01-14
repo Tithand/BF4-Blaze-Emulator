@@ -23,7 +23,8 @@ def CreateGame(self,data_e):
 	self.GAMEOBJ.AttrData = ATTR_Cont
 
 	self.GAMEOBJ.MaxPlayers = packet.getVar("PCAP")[0]
-	self.GAMEOBJ.MaxSpectat = packet.getVar("PCAP")[2]
+	self.GAMEOBJ.MaxCommander = packet.getVar("PCAP")[1]
+	self.GAMEOBJ.MaxSpectator = packet.getVar("PCAP")[2]
 
 	self.GAMEOBJ.GameRegis = packet.getVar("GMRG")
 	self.GAMEOBJ.GameName = packet.getVar("GNAM")
@@ -48,8 +49,8 @@ def CreateGame(self,data_e):
 	
 	reply.writeIntArray("CAP ")
 	reply.writeIntArray_Int(self.GAMEOBJ.MaxPlayers)
-	reply.writeIntArray_Int(0)
-	reply.writeIntArray_Int(self.GAMEOBJ.MaxSpectat)
+	reply.writeIntArray_Int(self.GAMEOBJ.MaxCommander)
+	reply.writeIntArray_Int(self.GAMEOBJ.MaxSpectator)
 	reply.writeIntArray_Int(0)
 	reply.writeBuildIntArray()
 	
@@ -336,7 +337,8 @@ def replayGame(self,data_e):
 def SetPlayerCapacity(self,data_e):
 	packet = BlazeFuncs.BlazeDecoder(data_e)
 	self.GAMEOBJ.MaxPlayers = packet.getVar("PCAP")[0]
-	self.GAMEOBJ.MaxSpectat = packet.getVar("PCAP")[2]
+	self.GAMEOBJ.MaxCommander = packet.getVar("PCAP")[1]
+	self.GAMEOBJ.MaxSpectator = packet.getVar("PCAP")[2]
 
 	reply = BlazeFuncs.BlazePacket("0004","0005",packet.packetID,"1000")
 	self.transport.getHandle().sendall(reply.build().decode('Hex'))

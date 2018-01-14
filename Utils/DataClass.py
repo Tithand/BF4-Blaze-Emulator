@@ -59,7 +59,8 @@ class BF3Server:
 	PingSite	= ''
 	
 	MaxPlayers  = 70
-	MaxSpectat  = 4
+	MaxCommander  = 2
+	MaxSpectator  = 4
 	Players   	= None
 	Commanders 	= [0,0]
 	Spectators	= [0,0,0,0]
@@ -73,14 +74,14 @@ class BF3Server:
 			
 	#Commander
 	def playerJoinCommander(self, pid):
-		for i in range(2):
+		for i in range(self.MaxCommander):
 			if self.Commanders[i] != pid and self.Commanders[i] == 0:
 				self.Commanders[i] = pid
 				return i
 		return False
 
 	def playerLeaveCommander(self, pid):
-		for i in range(2):
+		for i in range(self.MaxCommander):
 			if self.Commanders[i] == pid:
 				self.Commanders[i] = 0
 				return True
@@ -88,14 +89,14 @@ class BF3Server:
 	
 	#Spectator
 	def playerJoinSpectator(self, pid):
-		for i in range(self.MaxSpectat):
+		for i in range(self.MaxSpectator):
 			if self.Spectators[i] != pid and self.Spectators[i] == 0:
 				self.Spectators[i] = pid
 				return i
 		return False
 
 	def playerLeaveSpectator(self, pid):
-		for i in range(self.MaxSpectat):
+		for i in range(self.MaxSpectator):
 			if self.Spectators[i] == pid:
 				self.Spectators[i] = 0
 				return True

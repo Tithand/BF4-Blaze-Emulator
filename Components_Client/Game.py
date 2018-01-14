@@ -68,8 +68,8 @@ def UpdateMeshConnection(self,data_e):
 def JoinGame(self,data_e):
 	packet = BlazeFuncs.BlazeDecoder(data_e)
 	GID = packet.getVar("GID ")
+	role = packet.getVar("RRST")[0][0]
 	slotType = int(packet.getVar("SLOT"))
-	wtf = int(packet.getVarValue("ID  ", 2))
 
 	serverOBJ = None
 	ntop = 1
@@ -157,7 +157,7 @@ def JoinGame(self,data_e):
 			
 		reply.writeEUnion() #END VALU
 		
-		reply.writeString("ROLE", "soldier")
+		reply.writeString("ROLE", role)
 		reply.writeInt("SID ", slot)
 		reply.writeInt("SLOT", slotType)
 		reply.writeInt("STAT", 0)
@@ -224,8 +224,8 @@ def JoinGame(self,data_e):
 		#reply.append("8e1c000400022000")
 		reply.writeIntArray("CAP ")
 		reply.writeIntArray_Int(serverOBJ.MaxPlayers)
-		reply.writeIntArray_Int(0)
-		reply.writeIntArray_Int(serverOBJ.MaxSpectat)
+		reply.writeIntArray_Int(serverOBJ.MaxCommander)
+		reply.writeIntArray_Int(serverOBJ.MaxSpectator)
 		reply.writeIntArray_Int(0)
 		reply.writeBuildIntArray()
 		
@@ -286,7 +286,7 @@ def JoinGame(self,data_e):
 		reply.writeMap("CRIT")
 		reply.writeMapData("commanderRank", "stats_rank >= 10")
 		reply.writeBuildMap()
-		reply.writeInt("RCAP", 2)
+		reply.writeInt("RCAP", serverOBJ.MaxCommander)
 		reply.writeEUnion()
 		
 		reply.append("08736f6c6469657200") #SOLIDER
@@ -350,7 +350,7 @@ def JoinGame(self,data_e):
 		reply.writeEUnion() #END INIP
 		reply.writeEUnion() #END VALU
 		
-		reply.writeString("ROLE", "soldier")
+		reply.writeString("ROLE", role)
 		reply.writeInt("SID ", slot)
 		reply.writeInt("SLOT", slotType)
 		reply.writeInt("STAT", 2)
@@ -400,7 +400,7 @@ def JoinGame(self,data_e):
 		reply.writeEUnion() #END VALU
 		##Struct array end
 
-		reply.writeString("ROLE", "soldier")
+		reply.writeString("ROLE", role)
 		reply.writeInt("SID ", slot)
 		reply.writeInt("SLOT", slotType)
 		reply.writeInt("STAT", 2)
