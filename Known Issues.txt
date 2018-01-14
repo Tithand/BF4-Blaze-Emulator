@@ -1,0 +1,3 @@
+*Battledash does not work - (It's in development still)
+*Code is awful - I know, shutup.
+*No 32Bit support - I might do this, but it's just easier for now

@@ -1,0 +1,20 @@
+Requirements:
+Python 2.7
+Twisted for Python (Inclusive of PyOpenSSL)
+
+https://twistedmatrix.com/trac/wiki/Downloads
+
+If in Windows - Download all the dependencies
+
+Install pip: https://pip.pypa.io/en/stable/installing/
+Use pip to install PyOpenSSL
+pip install pyopenssl
+
+If it fails because of any depencies download them by 
+pip install packageName
+
+Then retry to install pyopenssl.
+
+Edit Init.py settings. IP/Password.
+
+Double click Init.py or naviage to the Emulator directory using Command Prompt and run python Init.py.

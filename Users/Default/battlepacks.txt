@@ -1,0 +1,1 @@
+[["gold_pack",[]],["bronze_pack",[]],["bronze_pack",[]],["silver_pack",[]]]

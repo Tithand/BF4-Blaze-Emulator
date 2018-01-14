@@ -1,0 +1,2 @@
+cd "%~dp0"
+cls && BF4WebHelper.exe -webMode MP -Origin_NoAppFocus --activate-webhelper -authCode username -password pass -blazeIP 127.0.0.1 -patchSSL -requestState State_ConnectToGameId -requestStateParams "<data putinsquad=\"true\" gameid=\"1\" isspectator=\"true\" personaref=\"1\" levelmode=\"mp\"></data>"
